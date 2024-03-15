@@ -27,14 +27,12 @@ int main(int argc, char * argv[])
 	center_print("INITIALIZATION", 79);
 	border_print();
 	
-	start = get_time();
-	
 	SimulationData SD = initialize_simulation( input );
+
+	// time data transfer
+	start = get_time();
+
 	SimulationData GSD = move_simulation_data_to_device( input, SD );
-
-	stop = get_time();
-
-	printf("Initialization Complete. (%.2lf seconds)\n", stop-start);
 	
 	// =====================================================================
 	// Cross Section (XS) Parallel Lookup Simulation Begins
@@ -44,9 +42,6 @@ int main(int argc, char * argv[])
 	border_print();
 
 	unsigned long vhash = 0;
-
-	// Run Simulation
-	start = get_time();
 
 	// Run simulation
 	if( input.simulation_method == EVENT_BASED )
